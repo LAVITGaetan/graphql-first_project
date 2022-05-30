@@ -1,0 +1,86 @@
+<%- include('includes/_header.ejs') %>
+    <select class="select" id="select-continent">
+        <option hidden>Select a continent</option>
+        <% continents.forEach((continent)=> { %>
+            <option value="<%= continent.code %>">
+                <%= continent.name %>
+            </option>
+            <%}); %>
+    </select>
+    <h3 class="title">All countries</h3>
+    <div class="container-countries">
+        <% continents.forEach((continent)=> { %>
+            <% continent.countries.forEach((country)=> { %>
+                <div data-code="<%= country.continent.code %>" class="card-countries" onclick="document.location.assign('/country-data?code=<%= country.code %>')">
+                    <div class="card-countries_code">
+                        <%= country.code %>
+                    </div>
+                    <span class="card-countries_label label">
+                        <%= country.name %>
+                    </span>
+                </div>
+                <%}); %>
+                    <%}); %>
+    </div>
+
+    <script>
+
+        // Récupérer les élements du DOM
+        let cards = document.getElementsByClassName('card-countries');
+
+        // Select Event
+        document.getElementById('select-continent').addEventListener('change', function(){
+            search();
+        });
+
+        // Récupérer les continents
+        let continents = [];
+        '<% continents.forEach((continent)=> { %>'
+        continents.push('<%=continent.name%>');
+        '<%}); %>'
+
+        // Récupérer les villes et leurs données
+        let countries = [];
+        '<% continents.forEach((continent)=> { %>'
+        '<% continent.countries.forEach((country)=> { %>'
+        countries.push({ code: '<%=country.code%>', name: '<%=country.name%>', capital: '<%=country.capital%>', phone: '<%=country.phone%>', continent: '<%=country.continent.code%>' });
+        '<%}); %>'
+        '<%}); %>'
+
+        // Search Function onkeyup
+        function search() {
+        let query = document.getElementById('search');
+        let select = document.getElementById('select-continent');
+        let title = document.getElementsByClassName('title')[0];
+        let results = 0;
+
+
+            for (let i = 0; i < cards.length; i++) {
+                let countryCode = cards[i].getElementsByClassName('');
+                if (cards[i].getElementsByClassName('label')[0].innerHTML.toLowerCase().includes(query.value.toLowerCase())) {
+                    if(select.value === 'Select a continent' || cards[i].getAttribute('data-code') === select.value) {
+                        cards[i].style.display = "flex";
+                        results ++;
+                    }
+                    else {
+                    cards[i].style.display = "none";
+                    }
+                }
+                else {
+                    cards[i].style.display = "none";
+                }
+            }
+            if(results < 1) {
+                title.innerHTML = `Aucun résultat trouvé pour "${query.value}"`;
+            }
+            else {
+                title.innerHTML = `${results} résultats trouvé pour "${query.value}"`;
+            }
+            if (query.value.length < 1) {
+                title.innerHTML = 'All countries';
+            }
+        }
+
+
+    </script>
+    <%- include('includes/_footer.ejs') %>

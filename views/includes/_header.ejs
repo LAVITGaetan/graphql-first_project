@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphql application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Montserrat;
+    }
+
+    body {
+        background-color: #F6F8FF;
+    }
+
+    .header {
+        width: 100%;
+        padding: 5em 20%;
+        background-color: #2C3148;
+        text-align: center;
+        color: #fff;
+    }
+
+    .header-title {
+        font-size: 30px;
+        padding-bottom: 1em;
+    }
+
+    .header-subtitle {
+        font-size: 20px;
+    }
+
+    .title {
+        margin:1em 11%;
+        font-size: 20px;
+        color: #2C3148;
+        font-weight: 600;
+    }
+
+    .searchbar {
+    width: 60%;
+    display: block;
+    margin: 5em auto 0 auto;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px #00000010;
+    height: 60px;
+    padding: 12px 24px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+    .select {
+        border: 2px solid #f1f3f5;
+        box-shadow: 5px 5px 10px 0px #00000020;
+        padding: 10px 20px;
+        color: #2C3148;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        margin: 3em 1em 4em 10%;
+        cursor: pointer;
+    }
+
+    .container-countries {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        box-shadow: 0px 10px 20px 0px #0000001A;
+        width: 80%;
+        margin: auto;
+        padding: 2em 0;
+    }
+
+    .card-countries {
+        width: 30%;
+        position: relative;
+        height: 50px;
+        border: 2px solid #f1f3f5;
+        margin-bottom: 1.5em;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .card-countries_label {
+        padding-left: 65px;
+        padding-right: 65px;
+        font-size: 16px;
+    }
+
+.card-countries_code {
+    transition: .3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50px;
+    background-color: #2C3148;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-countries:hover .card-countries_code {
+    background-color: #628CF6;
+}
+
+</style>
+
+<body>
+    <div class="header">
+        <h1 class="header-title">World explorer</h1>
+        <p class="header-subtitle">Get data from continents and country
+            all over the world.</p>
+            <input onkeyup="search()" id="search" class="searchbar" type="text" placeholder="Search...">
+
+    </div>
